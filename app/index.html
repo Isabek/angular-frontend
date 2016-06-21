@@ -9,8 +9,9 @@
 
     <title>Title</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/angular-flash.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,24 +39,33 @@
                     <a href="#">Sign In</a>
                 </li>
                 <li>
-                    <a href="#">Sign Up</a>
+                    <a href="#/signup">Sign Up</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container col-sm-12 main">
+<div class="container col-lg-10 col-lg-offset-1 main">
+    <flash-message></flash-message>
+</div>
+
+<div class="container col-lg-12 main">
     <div ng-view>
     </div>
 </div>
 
 <script src="assets/js/angular.min.js"></script>
 <script src="assets/js/angular-route.min.js"></script>
+<script src="assets/js/angular-flash.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="scripts/config.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/routes.js"></script>
 <script src="scripts/controllers/home.ctrl.js"></script>
+<script src="scripts/controllers/user.ctrl.js"></script>
+<script src="scripts/services/authentication.js"></script>
+<script src="scripts/services/user.js"></script>
 </body>
 </html>
