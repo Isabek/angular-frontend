@@ -10,5 +10,9 @@ angular.
         templateUrl: 'partials/user.signup.html',
         controller: 'UserController'
       }).
+      when('/signin', {
+        templateUrl: 'partials/user.signin.html',
+        controller: 'UserController'
+      }).
       otherwise('/');
   }]);

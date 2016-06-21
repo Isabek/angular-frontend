@@ -28,18 +28,29 @@
             </button>
             <a class="navbar-brand" href="">QS</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="navbar-collapse collapse" ng-controller="NavigationController">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="#/">Home</a>
                 </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">Sign In</a>
+                <li ng-show="username == null">
+                    <a href="#/signin">Sign In</a>
                 </li>
-                <li>
+                <li ng-show="username == null">
                     <a href="#/signup">Sign Up</a>
+                </li>
+                <li ng-show="username">
+                    <a href="">
+                        <strong>{{username}}</strong>
+                    </a>
+                </li>
+                <li ng-show="username">
+                    <p class="navbar-btn">
+                        <button ng-click="signout()" class="btn btn-primary">Sign Out</button>
+                    </p>
                 </li>
             </ul>
         </div>
@@ -65,7 +76,9 @@
 <script src="scripts/routes.js"></script>
 <script src="scripts/controllers/home.ctrl.js"></script>
 <script src="scripts/controllers/user.ctrl.js"></script>
+<script src="scripts/controllers/navigation.ctrl.js"></script>
 <script src="scripts/services/authentication.js"></script>
 <script src="scripts/services/user.js"></script>
+<script src="scripts/services/storage.js"></script>
 </body>
 </html>

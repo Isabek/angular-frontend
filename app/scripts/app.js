@@ -2,7 +2,7 @@
 
 angular.module('app', [
   'ngRoute', 'Routes',
-  'HomeCtrl', 'UserCtrl',
-  'AuthenticationService', 'UserService',
+  'HomeCtrl', 'UserCtrl', 'NavigationCtrl',
+  'AuthenticationService', 'UserService', 'StorageService',
   'ngFlash'
 ]);
