@@ -14,5 +14,9 @@ angular.
         templateUrl: 'partials/user.signin.html',
         controller: 'UserController'
       }).
+      when('/cars', {
+        templateUrl: 'partials/cars.list.html',
+        controller: 'CarController'
+      }).
       otherwise('/');
   }]);
