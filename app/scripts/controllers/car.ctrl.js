@@ -2,10 +2,6 @@
 
 angular.module('CarCtrl', []).controller('CarController', function CarController($scope, Car, Flash) {
 
-  $scope.$on('$locationChangeStart', function (event) {
-    $scope.all();
-  });
-
   $scope.cars = [];
   $scope.all = function () {
     Car.
