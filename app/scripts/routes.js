@@ -18,5 +18,10 @@ angular.
         templateUrl: 'partials/cars.list.html',
         controller: 'CarController'
       }).
+      when('/cars/create', {
+        templateUrl: 'partials/cars.create.html',
+        controller: 'CarController',
+        access: {requiredAuthentication: true}
+      }).
       otherwise('/');
   }]);

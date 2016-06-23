@@ -1,5 +1,12 @@
 <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
+        <div class="navbar-btn">
+            <a class="btn btn-success" href="#/cars/create">
+                <i class="glyphicon glyphicon-plus"></i>
+                Add new Car
+            </a>
+        </div>
+
         <table class="table table-bordered dataTable">
             <thead>
             <tr>
@@ -8,7 +15,8 @@
                 </th>
                 <th class="sortable">Mark</th>
                 <th class="sortable">Type</th>
-                <th width="220">Price</th>
+                <th>Price</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +32,19 @@
                 </td>
                 <td>
                     {{ car.price | currency }}
+                </td>
+                <td>
+                    <div>
+                        <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            Edit
+                        </a>
+
+                        <a class="btn btn-danger btn-xs" href="#/cars/{{car._id}}/remove">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            Remove
+                        </a>
+                    </div>
                 </td>
             </tr>
             </tbody>
