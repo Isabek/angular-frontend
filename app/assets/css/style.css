@@ -30,3 +30,8 @@ body {
 .main-center > h3 {
     text-align: center;
 }
+
+.login-register {
+    text-align: center;
+    font-size: 13px;
+}
