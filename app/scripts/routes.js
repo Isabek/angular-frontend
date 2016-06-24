@@ -23,5 +23,10 @@ angular.
         controller: 'CarController',
         access: {requiredAuthentication: true}
       }).
+      when('/cars/:id/edit', {
+        templateUrl: 'partials/cars.edit.html',
+        controller: 'CarEditController',
+        access: {requiredAuthentication: true}
+      }).
       otherwise('/');
   }]);

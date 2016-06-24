@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-3">
+        <h3 class="col-lg-offset-2">Edit Car</h3>
+        <input ng-model="car._id" type="hidden">
+        <form role="form" name="myForm" class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
+            <div class="form-group">
+                <label class="col-md-2">Name</label>
+
+                <div class="col-md-5">
+                    <input name="name" type="text" class="form-control" placeholder="Car name" required
+                           ng-model="car.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2">Mark</label>
+
+                <div class="col-md-5">
+                    <input name="mark" type="text" class="form-control" placeholder="Ex. Mercedes" required
+                           ng-model="car.mark">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2">Type</label>
+
+                <div class="col-md-5">
+                    <input name="type" type="text" class="form-control" placeholder="Ex. Truck" required
+                           ng-model="car.type">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2">Car Price</label>
+
+                <div class="col-md-5">
+                    <input name="price" type="text" class="form-control" placeholder="Car price" required
+                           ng-model="car.price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2"></label>
+
+                <div class="col-md-4">
+                    <a href="#/cars" class="btn btn-default">Cancel</a>
+                    <button class="btn btn-primary" ng-click="edit(car._id, car)">Edit Car</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

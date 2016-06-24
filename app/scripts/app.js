@@ -3,7 +3,7 @@
 angular.
   module('app', [
     'ngRoute', 'Routes',
-    'HomeCtrl', 'UserCtrl', 'NavigationCtrl', 'CarCtrl',
+    'HomeCtrl', 'UserCtrl', 'NavigationCtrl', 'CarCtrl', 'CarEditCtrl',
     'AuthenticationService', 'UserService', 'StorageService', 'CarService', 'TokenService',
     'ngFlash', 'ngProgress'
   ]).
