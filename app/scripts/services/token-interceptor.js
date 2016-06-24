@@ -21,7 +21,7 @@ angular.module('TokenService', []).factory('TokenInterceptor', function ($q, $lo
     },
     responseError: function (rejection) {
       $rootScope.progressbar.complete();
-      if (rejection != null && ( rejection.status === 401 || rejection.status === 403) && Storage.getToken()) {
+      if (rejection != null && rejection.status === 401 && Storage.getToken()) {
         Storage.removeItem('token');
         Storage.removeItem('username');
         $location.path('/signin');

@@ -5,7 +5,8 @@ angular.
     'ngRoute', 'Routes',
     'HomeCtrl', 'UserCtrl', 'NavigationCtrl', 'CarCtrl', 'CarEditCtrl',
     'AuthenticationService', 'UserService', 'StorageService', 'CarService', 'TokenService',
-    'ngFlash', 'ngProgress'
+    'ui.bootstrap',
+    'ngFlash', 'ngProgress', 'angular-confirm'
   ]).
   config(function ($httpProvider) {
     $httpProvider.interceptors.push('TokenInterceptor');

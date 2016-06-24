@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CarCtrl', []).controller('CarController', function CarController($scope, $location, Car, Flash) {
+angular.module('CarCtrl', []).controller('CarController', function CarController($scope, $location, $confirm, Car, Flash) {
 
   $scope.cars = [];
   $scope.all = function () {
@@ -12,7 +12,9 @@ angular.module('CarCtrl', []).controller('CarController', function CarController
       error(function (result) {
         Flash.create('danger', result.message, 4000, {}, true);
       });
-  }();
+  };
+
+  $scope.all();
 
   $scope.create = function (car) {
     Car.
@@ -25,4 +27,20 @@ angular.module('CarCtrl', []).controller('CarController', function CarController
         Flash.create('danger', result.message, 4000, {}, true);
       });
   };
+
+  $scope.delete = function (id) {
+    $confirm({text: 'Are you sure you want to delete?', title: 'Delete', ok: 'Yes', cancel: 'No'})
+      .then(function () {
+        Car.
+          delete(id).
+          success(function (result) {
+            $location.path('/cars');
+            $scope.all();
+            Flash.create('success', result.message, 4000, {}, true);
+          }).
+          error(function (result) {
+            Flash.create('danger', result.message, 4000, {}, true);
+          });
+      });
+  }
 });

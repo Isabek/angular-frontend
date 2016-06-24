@@ -21,6 +21,9 @@ angular.module('CarService', []).factory('Car', function ($http) {
         type: car.type,
         price: car.price
       });
+    },
+    delete: function (id, car) {
+      return $http.delete(options.api.baseUrl + '/car/' + id);
     }
   }
 });

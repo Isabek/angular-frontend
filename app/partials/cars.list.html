@@ -16,7 +16,7 @@
                 <th class="sortable">Mark</th>
                 <th class="sortable">Type</th>
                 <th>Price</th>
-                <th>Actions</th>
+                <th ng-show="username">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -33,17 +33,17 @@
                 <td>
                     {{ car.price | currency }}
                 </td>
-                <td>
+                <td ng-show="username">
                     <div>
                         <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
                             <i class="glyphicon glyphicon-edit"></i>
                             Edit
                         </a>
 
-                        <a class="btn btn-danger btn-xs" href="#/cars/{{car._id}}/remove">
+                        <button class="btn btn-danger btn-xs" ng-click="delete(car._id)">
                             <i class="glyphicon glyphicon-remove"></i>
-                            Remove
-                        </a>
+                            Delete
+                        </button>
                     </div>
                 </td>
             </tr>
