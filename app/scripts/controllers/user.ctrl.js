@@ -25,6 +25,7 @@ angular.
           success(function (result) {
 
             $rootScope.username = result.username;
+            $rootScope.userId = result.userId;
             Storage.setCurrentUser(result.username);
             Storage.setToken(result.token);
             Storage.setUserId(result.userId);

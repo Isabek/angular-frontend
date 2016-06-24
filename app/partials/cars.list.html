@@ -23,7 +23,7 @@
                     <td>{{ car.type }}</td>
                     <td>{{ car.price | currency }}</td>
                     <td ng-show="username">
-                        <div>
+                        <div ng-show="userId == car.user">
                             <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Edit
