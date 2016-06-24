@@ -2,7 +2,9 @@
 
 angular.
   module('CarCtrl', []).
-  controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash, Storage) {
+  controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash, Storage, Page) {
+
+    Page.setTitle("Cars List");
 
     $scope.init = {
       'count': 10,
@@ -38,18 +40,6 @@ angular.
           }
         }
       })
-    };
-
-    $scope.create = function (car) {
-      Car.
-        create(car).
-        success(function (result) {
-          $location.path('/cars');
-          Flash.create('success', result.message, 4000, {}, true);
-        }).
-        error(function (result) {
-          Flash.create('danger', result.message, 4000, {}, true);
-        });
     };
 
     $scope.delete = function (id, index) {

@@ -2,8 +2,9 @@
 
 angular.
   module('CarEditCtrl', []).
-  controller('CarEditController', function CarEditController($scope, $location, $routeParams, Car, Flash) {
+  controller('CarEditController', function CarEditController($scope, $location, $routeParams, Car, Flash, Page) {
 
+    Page.setTitle("Car Edit");
     $scope.car = {};
 
     Car.

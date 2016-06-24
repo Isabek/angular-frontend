@@ -3,15 +3,16 @@ angular.
   config(['$routeProvider', '$locationProvider', function ($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'partials/home.html',
+        controller: 'HeaderController'
       }).
       when('/signup', {
         templateUrl: 'partials/user.signup.html',
-        controller: 'UserController'
+        controller: 'UserSignupController'
       }).
       when('/signin', {
         templateUrl: 'partials/user.signin.html',
-        controller: 'UserController'
+        controller: 'UserSigninController'
       }).
       when('/cars', {
         templateUrl: 'partials/cars.list.html',
@@ -20,7 +21,7 @@ angular.
       }).
       when('/cars/create', {
         templateUrl: 'partials/cars.create.html',
-        controller: 'CarController',
+        controller: 'CarCreateController',
         access: {requiredAuthentication: true}
       }).
       when('/cars/:id/edit', {

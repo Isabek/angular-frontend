@@ -3,8 +3,8 @@
 angular.
   module('app', [
     'ngRoute', 'Routes',
-    'UserCtrl', 'NavigationCtrl', 'CarCtrl', 'CarEditCtrl', 'CarProfileCtrl',
-    'UserService', 'StorageService', 'CarService', 'TokenService',
+    'UserSignupCtrl', 'UserSigninCtrl', 'NavigationCtrl', 'CarCtrl', 'CarEditCtrl', 'CarProfileCtrl', 'HeaderCtrl', 'CarCreateCtrl',
+    'UserService', 'StorageService', 'CarService', 'TokenService', 'PageService',
     'ui.bootstrap',
     'ngFlash', 'ngProgress', 'angular-confirm', 'angularUtils.directives.dirPagination', 'ngTasty'
   ]).

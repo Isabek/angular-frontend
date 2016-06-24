@@ -2,7 +2,10 @@
 
 angular.
   module('CarProfileCtrl', []).
-  controller('CarProfileController', function CarProfileController($scope, $location, $routeParams, Car, Flash) {
+  controller('CarProfileController', function CarProfileController($scope, $location, $routeParams, Car, Flash, Page) {
+
+    Page.setTitle("Car Profile");
+
     Car.
       read($routeParams.id).
       success(function (result) {

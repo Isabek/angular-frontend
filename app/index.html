@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="app" ng-controller="HeaderController">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="fragment" content="!">
 
-    <title>Title</title>
+    <title>{{Page.title()}}</title>
+
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/angular-flash.min.css" rel="stylesheet">
@@ -91,17 +92,20 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/routes.js"></script>
 
-<script src="scripts/controllers/user.ctrl.js"></script>
+<script src="scripts/controllers/user.signin.ctrl.js"></script>
+<script src="scripts/controllers/user.signup.ctrl.js"></script>
 <script src="scripts/controllers/navigation.ctrl.js"></script>
+<script src="scripts/controllers/header.ctrl.js"></script>
 <script src="scripts/controllers/car.ctrl.js"></script>
 <script src="scripts/controllers/car.edit.ctrl.js"></script>
 <script src="scripts/controllers/car.profile.ctrl.js"></script>
+<script src="scripts/controllers/cars.create.ctrl.js"></script>
 
-<script src="scripts/services/authentication.js"></script>
 <script src="scripts/services/user.js"></script>
 <script src="scripts/services/storage.js"></script>
 <script src="scripts/services/car.js"></script>
 <script src="scripts/services/token-interceptor.js"></script>
+<script src="scripts/services/page.js"></script>
 
 <script src="scripts/table-headers.js"></script>
 </body>

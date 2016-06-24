@@ -1,22 +1,8 @@
 angular.
-  module('UserCtrl', []).
-  controller('UserController', function ($scope, $location, $window, User, Flash, Storage, $rootScope) {
-    $scope.signup = function signup(username, password, confirm) {
+  module('UserSigninCtrl', []).
+  controller('UserSigninController', function ($scope, $location, $window, User, Flash, Storage, $rootScope, Page) {
 
-      if (Storage.getCurrentUser()) {
-        $location.path('/');
-      } else {
-        User.
-          signup(username, password, confirm).
-          success(function (result) {
-            $location.path('/login');
-            Flash.create('success', result.message, 4000, {}, true);
-          }).
-          error(function (result) {
-            Flash.create('danger', result.message, 4000, {}, true);
-          });
-      }
-    };
+    Page.setTitle("Sign In");
 
     $scope.signin = function signin(username, password) {
       if (username != '' && password != '') {
