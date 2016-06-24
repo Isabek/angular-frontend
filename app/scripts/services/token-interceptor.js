@@ -1,6 +1,9 @@
-angular.module('TokenService', []).factory('TokenInterceptor', function ($q, $location, Storage) {
+angular.module('TokenService', []).factory('TokenInterceptor', function ($q, $location, $rootScope, Storage) {
   return {
     request: function (config) {
+
+      $rootScope.progressbar.start();
+
       config.headers = config.headers || {};
       if (Storage.getToken()) {
         config.headers.Authorization = 'Bearer ' + Storage.getToken();
@@ -8,10 +11,17 @@ angular.module('TokenService', []).factory('TokenInterceptor', function ($q, $lo
       return config;
     },
     requestError: function (rejection) {
+      $rootScope.progressbar.complete();
       return $q.reject(rejection);
     },
+
+    response: function (response) {
+      $rootScope.progressbar.complete();
+      return response;
+    },
     responseError: function (rejection) {
-      if (rejection != null && rejection.status === 401 && Storage.getToken()) {
+      $rootScope.progressbar.complete();
+      if (rejection != null && ( rejection.status === 401 || rejection.status === 403) && Storage.getToken()) {
         Storage.removeItem('token');
         Storage.removeItem('username');
         $location.path('/signin');

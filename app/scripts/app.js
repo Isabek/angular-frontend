@@ -5,12 +5,15 @@ angular.
     'ngRoute', 'Routes',
     'HomeCtrl', 'UserCtrl', 'NavigationCtrl', 'CarCtrl',
     'AuthenticationService', 'UserService', 'StorageService', 'CarService', 'TokenService',
-    'ngFlash'
+    'ngFlash', 'ngProgress'
   ]).
   config(function ($httpProvider) {
     $httpProvider.interceptors.push('TokenInterceptor');
   }).
-  run(function ($rootScope, $location, Authentication, Storage, Flash) {
+  run(function ($rootScope, $location, Authentication, Storage, Flash, ngProgressFactory) {
+
+    $rootScope.progressbar = ngProgressFactory.createInstance();
+
     $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
       if (nextRoute != null && nextRoute.access != null && nextRoute.access.requiredAuthentication && !Storage.getToken()) {
         $location.path('/signin');
