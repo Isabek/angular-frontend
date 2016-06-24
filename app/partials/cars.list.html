@@ -5,6 +5,11 @@
                 <i class="glyphicon glyphicon-plus"></i>
                 Add new Car
             </a>
+
+            <div class="pull-right">
+                <input name="price" type="text" class="form-control" ng-model="query" ng-keypress="search($event, query)"
+                       placeholder="Search by name">
+            </div>
         </div>
 
         <table class="table table-bordered dataTable">
@@ -20,7 +25,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="car in cars|itemsPerPage: perPage" total-items="totalCars" current-page="pagination.current">
+            <tr dir-paginate="car in cars|itemsPerPage: perPage" total-items="totalCars"
+                current-page="pagination.current">
                 <td>
                     {{ car.name }}
                 </td>

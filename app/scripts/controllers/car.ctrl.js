@@ -11,14 +11,16 @@ angular.module('CarCtrl', []).controller('CarController', function CarController
     current: 1
   };
 
-  function getCars(page) {
+  function getCars(page, text) {
     page = page || 1;
+    text = text || null;
     Car.
-      all(page).
+      all(page, text).
       success(function (result) {
         $scope.cars = result.data;
         $scope.totalCars = result.total;
         $location.search('page', page);
+        $location.search('search', text);
         $scope.pagination.current = page;
       }).
       error(function (result) {
@@ -56,6 +58,11 @@ angular.module('CarCtrl', []).controller('CarController', function CarController
       });
   };
 
+  $scope.search = function (event, text) {
+    if (event.which === 13) {
+      getCars($scope.pagination.current, text.trim());
+    }
+  };
 
   $scope.pageChanged = function (page) {
     getCars(page);
