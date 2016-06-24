@@ -18,10 +18,10 @@
                 <thead tasty-thead bind-not-sort-by="notSortBy"></thead>
                 <tbody>
                 <tr ng-repeat="(index, car) in rows">
-                    <td>{{ car.name }}</td>
+                    <td><a href="#/cars/{{car._id}}/profile">{{ car.name }}</a></td>
                     <td>{{ car.mark }}</td>
                     <td>{{ car.type }}</td>
-                    <td>{{ car.price }}</td>
+                    <td>{{ car.price | currency }}</td>
                     <td ng-show="username">
                         <div>
                             <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
