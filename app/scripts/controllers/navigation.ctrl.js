@@ -10,5 +10,10 @@ angular.
         $location.path('/');
         Flash.create('success', 'You have successfully logged out', 3000, {}, true);
       });
-    }
+    };
+
+    $scope.isActive = function (currentPath) {
+      return currentPath === $location.path();
+    };
+
   });

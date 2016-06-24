@@ -3,8 +3,7 @@ angular.
   config(['$routeProvider', '$locationProvider', function ($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeController'
+        templateUrl: 'partials/home.html'
       }).
       when('/signup', {
         templateUrl: 'partials/user.signup.html',
