@@ -16,16 +16,18 @@ angular.
 
     $scope.notSortBy = ['actions'];
 
-    if (!Storage.getCurrentUser() && headers.length == 5) {
-      headers.splice(4);
-    } else if (headers.length == 4) {
-      headers.push({
-        "name": "Actions",
-        "key": "actions"
-      });
-    }
 
     $scope.getCars = function (params, paramsObj) {
+
+      if (!Storage.getCurrentUser() && headers.length == 5) {
+        headers.splice(4);
+      } else if (headers.length == 4 && Storage.getCurrentUser()) {
+        headers.push({
+          "name": "Actions",
+          "key": "actions"
+        });
+      }
+
       return Car.all(params).then(function (response) {
         if (paramsObj) setParamsToUrl(paramsObj);
         $scope.rows = response.data['cars'];
