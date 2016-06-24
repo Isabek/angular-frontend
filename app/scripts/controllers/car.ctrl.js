@@ -2,7 +2,7 @@
 
 angular.
   module('CarCtrl', []).
-  controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash) {
+  controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash, Storage) {
 
     $scope.init = {
       'count': 10,
@@ -13,6 +13,15 @@ angular.
     };
 
     $scope.notSortBy = ['actions'];
+
+    if (!Storage.getCurrentUser() && headers.length == 5) {
+      headers.splice(4);
+    } else if (headers.length == 4) {
+      headers.push({
+        "name": "Actions",
+        "key": "actions"
+      });
+    }
 
     $scope.getCars = function (params, paramsObj) {
       return Car.all(params).then(function (response) {
