@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 
 var port = process.env.PORT || 3000;
-var host = process.env.HOST || '127.0.0.1';
+var host = process.env.HOST || '0.0.0.0';
 
 app.use(express.static('./app'));
 
