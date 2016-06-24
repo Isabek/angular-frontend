@@ -4,14 +4,14 @@ angular.
   module('app', [
     'ngRoute', 'Routes',
     'UserCtrl', 'NavigationCtrl', 'CarCtrl', 'CarEditCtrl', 'CarProfileCtrl',
-    'AuthenticationService', 'UserService', 'StorageService', 'CarService', 'TokenService',
+    'UserService', 'StorageService', 'CarService', 'TokenService',
     'ui.bootstrap',
     'ngFlash', 'ngProgress', 'angular-confirm', 'angularUtils.directives.dirPagination', 'ngTasty'
   ]).
   config(function ($httpProvider) {
     $httpProvider.interceptors.push('TokenInterceptor');
   }).
-  run(function ($rootScope, $location, Authentication, Storage, Flash, ngProgressFactory) {
+  run(function ($rootScope, $location, Storage, Flash, ngProgressFactory) {
 
     $rootScope.progressbar = ngProgressFactory.createInstance();
 

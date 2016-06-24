@@ -12,8 +12,16 @@ angular.module('StorageService', []).factory('Storage', function ($window) {
     getToken: function () {
       return $window.localStorage.getItem('token');
     },
-    removeItem: function (item) {
-      $window.localStorage.removeItem(item);
+    setUserId: function (userId) {
+      $window.localStorage.setItem('userId', userId);
+    },
+    getUserId: function () {
+      return $window.localStorage.getItem('userId');
+    },
+    clearUserCredentials: function () {
+      $window.localStorage.removeItem('userId');
+      $window.localStorage.removeItem('username');
+      $window.localStorage.removeItem('token');
     }
   }
 });

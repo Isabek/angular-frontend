@@ -18,8 +18,7 @@ angular.module('UserService', []).factory('User', function ($http, Storage, $q, 
     signout: function () {
       var deferred = $q.defer();
       $timeout(function () {
-        Storage.removeItem('token');
-        Storage.removeItem('username');
+        Storage.clearUserCredentials();
         deferred.resolve();
       }, 0);
       return deferred.promise;

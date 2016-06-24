@@ -1,9 +1,9 @@
 angular.
   module('UserCtrl', []).
-  controller('UserController', function ($scope, $location, $window, Authentication, User, Flash, Storage, $rootScope) {
+  controller('UserController', function ($scope, $location, $window, User, Flash, Storage, $rootScope) {
     $scope.signup = function signup(username, password, confirm) {
 
-      if (Authentication.isAuthenticated) {
+      if (Storage.getCurrentUser()) {
         $location.path('/');
       } else {
         User.
@@ -24,10 +24,10 @@ angular.
           signin(username, password).
           success(function (result) {
 
-            Authentication.isAuthenticated = true;
             $rootScope.username = result.username;
             Storage.setCurrentUser(result.username);
             Storage.setToken(result.token);
+            Storage.setUserId(result.userId);
 
             $location.path('/');
             Flash.create('success', result.message, 4000, {}, true);
