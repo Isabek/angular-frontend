@@ -20,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="car in cars">
+            <tr dir-paginate="car in cars|itemsPerPage: perPage" total-items="totalCars" current-page="pagination.current">
                 <td>
                     {{ car.name }}
                 </td>
@@ -49,5 +49,6 @@
             </tr>
             </tbody>
         </table>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

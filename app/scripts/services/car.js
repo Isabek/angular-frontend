@@ -1,7 +1,8 @@
 angular.module('CarService', []).factory('Car', function ($http) {
   return {
-    all: function () {
-      return $http.get(options.api.baseUrl + '/car/');
+    all: function (page) {
+      page = parseInt(page) || 1;
+      return $http.get(options.api.baseUrl + '/car/?page=' + page);
     },
     create: function (car) {
       return $http.post(options.api.baseUrl + '/car/', {

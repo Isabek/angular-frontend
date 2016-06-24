@@ -16,7 +16,8 @@ angular.
       }).
       when('/cars', {
         templateUrl: 'partials/cars.list.html',
-        controller: 'CarController'
+        controller: 'CarController',
+        reloadOnSearch: false
       }).
       when('/cars/create', {
         templateUrl: 'partials/cars.create.html',
