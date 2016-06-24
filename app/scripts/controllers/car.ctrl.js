@@ -1,71 +1,69 @@
 'use strict';
 
-angular.module('CarCtrl', []).controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash) {
+angular.
+  module('CarCtrl', []).
+  controller('CarController', function CarController($scope, $location, $confirm, $routeParams, Car, Flash) {
 
-  $scope.cars = [];
-  $scope.totalCars = 0;
-  $scope.page = 1;
-  $scope.perPage = 10;
+    $scope.init = {
+      'count': 10,
+      'page': 1
+    };
+    $scope.filterBy = {
+      'name': ''
+    };
 
-  $scope.pagination = {
-    current: 1
-  };
+    $scope.notSortBy = ['actions'];
 
-  function getCars(page, text) {
-    page = page || 1;
-    text = text || null;
-    Car.
-      all(page, text).
-      success(function (result) {
-        $scope.cars = result.data;
-        $scope.totalCars = result.total;
-        $location.search('page', page);
-        $location.search('search', text);
-        $scope.pagination.current = page;
-      }).
-      error(function (result) {
-        Flash.create('danger', result.message, 4000, {}, true);
-      });
-  }
+    $scope.getCars = function (params, paramsObj) {
+      return Car.all(params).then(function (response) {
+        if (paramsObj) setParamsToUrl(paramsObj);
+        $scope.rows = response.data['cars'];
+        return {
+          'rows': response.data['cars'],
+          'header': headers,
+          'sort-by': response.data['sortBy'],
+          'sort-order': response.data['sortOrder'],
+          'pagination': {
+            'count': response.data['limit'],
+            'size': response.data['total']
+          }
+        }
+      })
+    };
 
-  getCars($routeParams.page || 1);
+    $scope.create = function (car) {
+      Car.
+        create(car).
+        success(function (result) {
+          $location.path('/cars');
+          Flash.create('success', result.message, 4000, {}, true);
+        }).
+        error(function (result) {
+          Flash.create('danger', result.message, 4000, {}, true);
+        });
+    };
 
-  $scope.create = function (car) {
-    Car.
-      create(car).
-      success(function (result) {
-        $location.path('/cars');
-        Flash.create('success', result.message, 4000, {}, true);
-      }).
-      error(function (result) {
-        Flash.create('danger', result.message, 4000, {}, true);
-      });
-  };
+    $scope.delete = function (id, index) {
+      $confirm({text: 'Are you sure you want to delete?', title: 'Delete', ok: 'Yes', cancel: 'No'})
+        .then(function () {
+          Car.
+            delete(id).
+            success(function (result) {
+              $scope.rows.splice(index, 1);
+              Flash.create('success', result.message, 4000, {}, true);
+            }).
+            error(function (result) {
+              Flash.create('danger', result.message, 4000, {}, true);
+            });
+        });
+    };
 
-  $scope.delete = function (id) {
-    $confirm({text: 'Are you sure you want to delete?', title: 'Delete', ok: 'Yes', cancel: 'No'})
-      .then(function () {
-        Car.
-          delete(id).
-          success(function (result) {
-            $location.path('/cars');
-            getCars();
-            Flash.create('success', result.message, 4000, {}, true);
-          }).
-          error(function (result) {
-            Flash.create('danger', result.message, 4000, {}, true);
-          });
-      });
-  };
-
-  $scope.search = function (event, text) {
-    if (event.which === 13) {
-      getCars($scope.pagination.current, text.trim());
+    function setParamsToUrl(paramsObj) {
+      $location.search('name', paramsObj.filters['name'] ? paramsObj.filters['name'] : null);
+      $location.search('page', paramsObj['page']);
+      $location.search('sort-by', paramsObj['sortBy']);
+      $location.search('sort-order', paramsObj['sortOrder']);
+      $location.search('count', paramsObj['count']);
     }
-  };
 
-  $scope.pageChanged = function (page) {
-    getCars(page);
-  }
-
-});
+  });

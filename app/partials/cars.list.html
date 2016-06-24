@@ -1,60 +1,44 @@
 <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
-        <div class="navbar-btn">
-            <a class="btn btn-success" href="#/cars/create">
-                <i class="glyphicon glyphicon-plus"></i>
-                Add new Car
-            </a>
+        <div class="form-group">
+            <div class="navbar-btn">
+                <a class="btn btn-success" href="#/cars/create">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Add new Car
+                </a>
 
-            <div class="pull-right">
-                <input name="price" type="text" class="form-control" ng-model="query" ng-keypress="search($event, query)"
-                       placeholder="Search by name">
+                <div class="pull-right">
+                    <input type="text" class="form-control" ng-model="filterBy.name"
+                           placeholder="Search by name"/>
+                </div>
             </div>
         </div>
+        <div tasty-table bind-resource-callback="getCars" bind-init="init" bind-filters="filterBy">
+            <table class="table table-bordered">
+                <thead tasty-thead bind-not-sort-by="notSortBy"></thead>
+                <tbody>
+                <tr ng-repeat="(index, car) in rows">
+                    <td>{{ car.name }}</td>
+                    <td>{{ car.mark }}</td>
+                    <td>{{ car.type }}</td>
+                    <td>{{ car.price }}</td>
+                    <td ng-show="username">
+                        <div>
+                            <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
 
-        <table class="table table-bordered dataTable">
-            <thead>
-            <tr>
-                <th class="sortable" id="name">
-                    Name
-                </th>
-                <th class="sortable">Mark</th>
-                <th class="sortable">Type</th>
-                <th>Price</th>
-                <th ng-show="username">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr dir-paginate="car in cars|itemsPerPage: perPage" total-items="totalCars"
-                current-page="pagination.current">
-                <td>
-                    {{ car.name }}
-                </td>
-                <td>
-                    {{ car.mark }}
-                </td>
-                <td>
-                    {{ car.type }}
-                </td>
-                <td>
-                    {{ car.price | currency }}
-                </td>
-                <td ng-show="username">
-                    <div>
-                        <a class="btn btn-info btn-xs" href="#/cars/{{car._id}}/edit">
-                            <i class="glyphicon glyphicon-edit"></i>
-                            Edit
-                        </a>
-
-                        <button class="btn btn-danger btn-xs" ng-click="delete(car._id)">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            Delete
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+                            <button class="btn btn-danger btn-xs" ng-click="delete(car._id, index)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div tasty-pagination></div>
+        </div>
     </div>
 </div>
